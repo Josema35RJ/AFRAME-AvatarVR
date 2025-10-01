@@ -9,45 +9,46 @@
     <script src="https://cdn.jsdelivr.net/npm/aframe-extras@6.1.1/dist/aframe-extras.min.js"></script>
   </head>
   <body>
-    <a-scene background="color: #ECECEC">
+    <a-scene background="color: #ECECEC" shadow="type: pcfsoft">
       <!-- Assets -->
       <a-assets>
-        <!-- Modelo GLB alojado en CDN con CORS habilitado -->
         <a-asset-item id="avatar" src="https://cdn.jsdelivr.net/gh/Josema35RJ/Avatar@main/3dpea.com_Salute.glb"></a-asset-item>
+        <img id="groundTexture" src="https://cdn.pixabay.com/photo/2016/09/02/22/17/grass-1643215_1280.jpg">
+        <img id="skyTexture" src="https://cdn.pixabay.com/photo/2016/11/29/05/07/sky-1867271_1280.jpg">
       </a-assets>
 
       <!-- Avatar centrado y mirando hacia la cámara -->
       <a-entity gltf-model="#avatar"
-                position="0 0 -2"
-                rotation="0 0 0"
-                scale="0.5 0.5 0.5"
-                animation-mixer>
+                position="0 0 -1"
+                rotation="0 180 0"
+                scale="1 1 1"
+                animation-mixer
+                shadow="cast: true">
       </a-entity>
 
-      <!-- Cámara con controles -->
-      <a-entity camera
-                position="0 1.6 0"
-                look-controls
-                wasd-controls>
-      </a-entity>
+      <!-- Cámara -->
+      <a-entity camera position="0 1.6 1" look-controls wasd-controls></a-entity>
 
       <!-- Iluminación -->
-      <a-entity light="type: ambient; intensity: 0.8"></a-entity>
-      <a-entity light="type: directional; intensity: 1"
-                position="0 4 4"
-                rotation="-45 0 0">
+      <a-entity light="type: ambient; intensity: 0.6"></a-entity>
+      <a-entity light="type: directional; intensity: 1" 
+                position="2 4 4" 
+                rotation="-45 45 0" 
+                shadow="cast: true">
       </a-entity>
 
-      <!-- Suelo -->
-      <a-plane position="0 0 -2"
+      <!-- Suelo con textura -->
+      <a-plane position="0 0 -1"
                rotation="-90 0 0"
-               width="10"
-               height="10"
-               color="#CCC">
+               width="10" 
+               height="10" 
+               src="#groundTexture"
+               repeat="4 4"
+               shadow="receive: true">
       </a-plane>
 
-      <!-- Cielo -->
-      <a-sky color="#A9CCE3"></a-sky>
+      <!-- Cielo con imagen -->
+      <a-sky src="#skyTexture"></a-sky>
     </a-scene>
   </body>
 </html>
