@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <title>Avatar Animado en A-Frame</title>
+    <!-- A-Frame -->
+    <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+    <!-- Animation Mixer -->
+    <script src="https://cdn.jsdelivr.net/npm/aframe-extras@6.1.1/dist/aframe-extras.min.js"></script>
+  </head>
+  <body>
+    <a-scene background="color: #ECECEC">
+      <!-- Assets -->
+      <a-assets>
+        <!-- Modelo GLB alojado en CDN con CORS habilitado -->
+        <a-asset-item id="avatar" src="https://cdn.jsdelivr.net/gh/Josema35RJ/Avatar@main/3dpea.com_Salute.glb"></a-asset-item>
+      </a-assets>
+
+      <!-- Avatar centrado y mirando hacia la cámara -->
+      <a-entity gltf-model="#avatar"
+                position="0 0 -2"
+                rotation="0 0 0"
+                scale="0.5 0.5 0.5"
+                animation-mixer>
+      </a-entity>
+
+      <!-- Cámara con controles -->
+      <a-entity camera
+                position="0 1.6 0"
+                look-controls
+                wasd-controls>
+      </a-entity>
+
+      <!-- Iluminación -->
+      <a-entity light="type: ambient; intensity: 0.8"></a-entity>
+      <a-entity light="type: directional; intensity: 1"
+                position="0 4 4"
+                rotation="-45 0 0">
+      </a-entity>
+
+      <!-- Suelo -->
+      <a-plane position="0 0 -2"
+               rotation="-90 0 0"
+               width="10"
+               height="10"
+               color="#CCC">
+      </a-plane>
+
+      <!-- Cielo -->
+      <a-sky color="#A9CCE3"></a-sky>
+    </a-scene>
+  </body>
+</html>
