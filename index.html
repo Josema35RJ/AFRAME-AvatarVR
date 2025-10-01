@@ -3,42 +3,41 @@
   <head>
     <meta charset="utf-8">
     <title>Avatar Animado en A-Frame</title>
-    <!-- A-Frame -->
     <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
-    <!-- Animation Mixer -->
     <script src="https://cdn.jsdelivr.net/npm/aframe-extras@6.1.1/dist/aframe-extras.min.js"></script>
   </head>
   <body>
-    <a-scene background="color: #ECECEC" shadow="type: pcfsoft">
+    <a-scene shadow="type: pcfsoft">
       <!-- Assets -->
       <a-assets>
         <a-asset-item id="avatar" src="https://cdn.jsdelivr.net/gh/Josema35RJ/Avatar@main/3dpea.com_Salute.glb"></a-asset-item>
+        <!-- Panorámica equirectangular realista -->
+        <img id="skyTexture" src="https://cdn.pixabay.com/photo/2017/08/30/01/05/milky-way-2695569_1280.jpg">
         <img id="groundTexture" src="https://cdn.pixabay.com/photo/2016/09/02/22/17/grass-1643215_1280.jpg">
-        <img id="skyTexture" src="https://cdn.pixabay.com/photo/2016/11/29/05/07/sky-1867271_1280.jpg">
       </a-assets>
 
-      <!-- Avatar centrado y mirando hacia la cámara -->
+      <!-- Avatar más cerca y grande -->
       <a-entity gltf-model="#avatar"
-                position="0 0 -1"
+                position="0 0 -0.5"
                 rotation="0 180 0"
-                scale="1 1 1"
+                scale="1.2 1.2 1.2"
                 animation-mixer
                 shadow="cast: true">
       </a-entity>
 
-      <!-- Cámara -->
-      <a-entity camera position="0 1.6 1" look-controls wasd-controls></a-entity>
+      <!-- Cámara frente al avatar -->
+      <a-entity camera position="0 1.6 0.5" look-controls wasd-controls></a-entity>
 
       <!-- Iluminación -->
       <a-entity light="type: ambient; intensity: 0.6"></a-entity>
       <a-entity light="type: directional; intensity: 1" 
-                position="2 4 4" 
+                position="2 4 2" 
                 rotation="-45 45 0" 
                 shadow="cast: true">
       </a-entity>
 
-      <!-- Suelo con textura -->
-      <a-plane position="0 0 -1"
+      <!-- Suelo con textura repetida -->
+      <a-plane position="0 0 -0.5"
                rotation="-90 0 0"
                width="10" 
                height="10" 
@@ -47,8 +46,8 @@
                shadow="receive: true">
       </a-plane>
 
-      <!-- Cielo con imagen -->
-      <a-sky src="#skyTexture"></a-sky>
+      <!-- Cielo panorámico -->
+      <a-sky src="#skyTexture" rotation="0 -90 0"></a-sky>
     </a-scene>
   </body>
 </html>
